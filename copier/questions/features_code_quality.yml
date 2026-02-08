@@ -14,6 +14,9 @@ SelectCodeQualityFeatures:
   help: Select code quality features
   multiselect: true
   choices:
+    Entry point (add a CLI interface):
+      value: AddCliInterface_flag
+      # validator: "{% if something != 'AnotherThing' %}BlaBla{% endif %}"
     Unit tests (using pytest):
       value: AddLocalTests_flag
       # validator: "{% if something != 'AnotherThing' %}BlaBla{% endif %}"
@@ -34,6 +37,7 @@ SelectCodeQualityFeatures:
       # validator: "{% if something != 'AnotherThing' %}BlaBla{% endif %}"
     Typing (select type checker later):
       value: AddTyping_flag
+      # validator: "{% if something != 'AnotherThing' %}BlaBla{% endif %}"
 
 # Sub-menus
 SelectGitHubActions:
@@ -108,4 +112,8 @@ AddLinting:
 AddEditorConfig:
   type: bool
   default: "{{ 'AddEditorConfig_flag' in SelectCodeQualityFeatures }}"
+  when: false
+AddCliInterface:
+  type: bool
+  default: "{{ 'AddCliInterface_flag' in SelectCodeQualityFeatures }}"
   when: false

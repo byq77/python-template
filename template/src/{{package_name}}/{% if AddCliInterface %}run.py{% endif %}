@@ -1,0 +1,58 @@
+import argparse
+import logging
+from . import __copyright__, __version__, hello
+from . import __name__ as tool_name
+
+
+class InvalidLogLevelError(TypeError):
+    """Raised when an invalid log level is provided."""
+
+    def __init__(self, level: str) -> None:
+        super().__init__(f"Invalid log level: {level}")
+
+
+def main() -> None:
+    """{{ package_short_description }}."""
+    formatter = logging.Formatter(
+        "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+    )
+    ch = logging.StreamHandler()
+    ch.setFormatter(formatter)
+    ch.setLevel(logging.DEBUG)
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(ch)
+
+    parser = argparse.ArgumentParser(description=main.__doc__)
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"{tool_name} {__version__} {__copyright__}",
+    )
+    parser.add_argument(
+        "-l",
+        "--log",
+        nargs="?",
+        type=str,
+        metavar="level",
+        default="INFO",
+        const="DEBUG",
+        required=False,
+        help="logging level",
+    )
+    # add other arguments here as needed
+
+    # configure logging level
+    args = parser.parse_args()
+
+    # configure logging level
+    numeric_level = getattr(logging, args.log.upper(), None)
+    if not isinstance(numeric_level, int):
+        raise InvalidLogLevelError(args.log)
+
+    logging.info(hello({{ full_name }}))
+
+
+if __name__ == "__main__":
+    main()

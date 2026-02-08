@@ -110,6 +110,26 @@ Changelog = "{{ repository_url }}/CHANGELOG.md"
 {% if AddOnlineDocumentation -%}
 Documentation = "https://{{ package_name }}.readthedocs.io"
 {% endif %}
+
+{% if AddCliInterface -%}
+[project.scripts]
+{{ package_name }} = "{{ package_name }}.run:main"
+
+# This is configuration specific to the `setuptools` build backend.
+# If you are using a different build backend, you will need to change this.
+[tool.setuptools]
+# Include non-code files specified by the packaging configuration (e.g., MANIFEST.in) in the built distribution.
+# Keep this enabled if your package needs to ship data files; otherwise it can be omitted.
+include-package-data = true
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["src"]          # ["."] by default
+include = ["{{ package_name }}"] # ["*"] by default
+exclude = [""]         # empty by default
+namespaces = false     # true by defaultpip
+{%- endif %}
+
 {% if AddLocalTests -%}
 [tool.pytest.ini_options]
 testpaths = ["tests"]
