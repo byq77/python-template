@@ -111,11 +111,11 @@ command_line = "-m pytest"
 requires = ["tox>=4.22"]
 env_list = [ "py312", "py313", "py314" ]
 skip_missing_interpreters = true
+
 {% if AddLocalTests -%}
-[tool.box.testenv]
-description = "Run test under {base_python}"
-commands = [["pytest"]]
 [tool.tox.env_run_base]
+description = "Run test under {base_python}"
+commands = [["pytest", "-v"]]
 dependency_groups = [ "dev" ]
 {%- endif %}
 
