@@ -20,6 +20,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = []
 description = "{{ package_short_description|replace('\"', '\\\"') }}"
@@ -151,6 +152,7 @@ pydocstyle.convention = "google"
 # Tests can ignore a few extra rules
 "tests/**.py" = [
     "ANN201", # Missing return type annotation for public function
+    "ANN001", # Missing type annotation for self in method
     "PT011",  # Missing `match` parameter in `pytest.raises()`
     "S101",   # Use of assert is detected
 ]
