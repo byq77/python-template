@@ -4,6 +4,10 @@ import logging
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
-__author__ = "{{ full_name|replace('\"', '\\\"') }}"
-__email__ = "{{ email }}"
-__version__ = "{{ version }}"
+from .__about__ import (
+    __author__,
+    __copyright__,
+    __date__,
+    __email__,
+    __version__,
+)

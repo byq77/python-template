@@ -16,6 +16,14 @@ version:
         {% if not (version | regex_search('^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$')) %}
         Package version should use Semantic Versioning 2.0.0 (MAJOR.MINOR.PATCH)
         {% endif %}
+year:
+  type: str
+  default: 2026
+  help: Enter the creation year of the Python package
+  validator: >-
+        {% if not (year | regex_search('^\d{4}$')) %}
+        Creation year should be a 4-digit number
+        {% endif %}
 full_name:
   type: str
   placeholder: Jane Smith

@@ -154,10 +154,14 @@ pydocstyle.convention = "google"
     "PT011",  # Missing `match` parameter in `pytest.raises()`
     "S101",   # Use of assert is detected
 ]
+"src/{{ package_name }}/__init__.py" = [
+    "E402", # Module level import not at top of file (e.g., for `__version__` or `__copyright__` variables)
+    "F401" # Module imported but unused (e.g., for `__version__` or `__copyright__` variables)
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["{{ package_name }}"]
-force-single-line = true
+force-single-line = false
 no-lines-before = ["future","standard-library","third-party","first-party","local-folder"]
 
 {% if AddTyping -%}
@@ -175,7 +179,7 @@ files = ["src"]
 current_version = "{{ version }}"
 
 [[tool.bumpversion.files]]
-filename = "src/{{ package_name }}/__init__.py"
+filename = "src/{{ package_name }}/__about__.py"
 
 [[tool.bumpversion.files]]
 filename = "pyproject.toml"
