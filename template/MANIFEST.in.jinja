@@ -1,8 +1,13 @@
+# MANIFEST.in
+
+# graft src
+# graft tests
+# `-> adds all files inside a directory
+
 {%- if AddCitation %}
 include CITATION.cff
 {%- endif %}
-include LICENSE
-{%- if license == "Apachev2" %}
-include NOTICE
-{%- endif %}
-include README.md
+# `-> matches file paths relative to the root of the project
+
+global-exclude *~ *.py[cod] *.so
+# `-> matches file names (regardless of directory)
