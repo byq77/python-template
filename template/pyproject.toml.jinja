@@ -113,7 +113,7 @@ Documentation = "https://{{ package_name }}.readthedocs.io"
 
 {% if AddCliInterface -%}
 [project.scripts]
-{{ package_name }} = "{{ package_name }}.run:main"
+{{ package_name|replace('_', '-') }} = "{{ package_name }}.main:main"
 
 # This is configuration specific to the `setuptools` build backend.
 # If you are using a different build backend, you will need to change this.
