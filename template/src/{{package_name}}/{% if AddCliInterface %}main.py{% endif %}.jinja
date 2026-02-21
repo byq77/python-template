@@ -51,7 +51,8 @@ def main() -> None:
     if not isinstance(numeric_level, int):
         raise InvalidLogLevelError(args.log)
 
-    logging.info(hello({{ full_name }}))
+    msg = hello("{{ full_name|replace('\"', '\\\"') }}")
+    logger.info(msg)
 
 
 if __name__ == "__main__":
